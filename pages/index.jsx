@@ -5,8 +5,23 @@ import db from '../db/index'
 
 const IndexPage = () => {
   useEffect(() => {
-    // Connect to MongoDB
-    db.char.testing();
+    const testing = async () => {
+        try {
+          const response = await fetch('/api/add-char', {
+            method: 'POST',
+          })
+
+          if (response.ok) {
+
+          } else {
+            console.error('Failed');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+        }
+        };
+
+        testing();
   }, []); // Empty dependency array ensures the effect runs only once on component mount
 
   return (

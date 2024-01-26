@@ -1,4 +1,3 @@
-import User from '../models/user'
 import { dbConnect } from './util'
 import Char from '../models/char';
 
