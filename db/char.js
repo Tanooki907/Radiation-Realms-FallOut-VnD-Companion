@@ -1,5 +1,5 @@
-import { dbConnect } from './util'
-import Char from '../models/char';
+import dbConnect from './connection'
+import Char from './models/char';
 
 export async function testing() {
   await dbConnect()

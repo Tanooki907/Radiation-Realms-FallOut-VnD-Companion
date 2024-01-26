@@ -1,6 +1,6 @@
-import * as user from './controllers/user'
-import * as auth from './controllers/auth'
-import * as char from './controllers/char'
+import * as user from './user'
+import * as auth from './auth'
+import * as char from './char'
 
 const db = {
   user,
@@ -8,4 +8,4 @@ const db = {
   char
 }
 
-export default db
+export default db;
