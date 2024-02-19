@@ -33,6 +33,7 @@ AGI: 1,
 LCK: 1
 });
 const [allocatedPoints, setAllocatedPoints] = useState(0);
+const [init, setInit] = useState(false);
 const updatePoints = (event) => {
 var selectedRace = sessionStorage.getItem('selectedRace');
 var selectedBackground = sessionStorage.getItem('selectedBackground');
@@ -44,15 +45,7 @@ var INTInput = document.getElementById('intelligence');
 var AGIInput = document.getElementById('agility');
 var LCKInput = document.getElementById('luck');
 if (SPECIALPoints == 0) {
-  sessionStorage.setItem("STR", STRInput.min || 0);
-sessionStorage.setItem("PER", PERInput.min || 0);
-sessionStorage.setItem("END", ENDInput.min || 0);
-sessionStorage.setItem("CHA", CHAInput.min || 0);
-sessionStorage.setItem("INT", INTInput.min || 0);
-sessionStorage.setItem("AGI", AGIInput.min || 0);
-sessionStorage.setItem("LCK", LCKInput.min || 0);
-}
-if (selectedRace === 'Human') {
+  if (selectedRace === 'Human') {
     if (selectedBackground === 'Wanderer') {
         setSPECIALPoints(35);
     } else {
@@ -66,17 +59,13 @@ if (selectedRace === 'Human') {
     }
   STRInput.max = 8;
   PERInput.min = 2;
-  PERInput.value = 2;
   ENDInput.max = 8;
   if (selectedBackground === "You're RADical") {
     CHAInput.min = 2;
-    CHAInput.value = 2;
   }
   INTInput.min = 3;
-  INTInput.value = 3;
   INTInput.max = 12;
   LCKInput.min = 5;
-  LCKInput.value = 5;
   LCKInput.max = 12;
 } else if (selectedRace === 'Synth') {
     if (selectedBackground === 'I Am Superior') {
@@ -88,15 +77,11 @@ if (selectedRace === 'Human') {
     if (selectedBackground === 'OVERLORD') {
       setSPECIALPoints(32);
       STRInput.min = 7;
-      STRInput.value = 7;
       ENDInput.min = 6;
-      ENDInput.value = 6;
     } else {
       setSPECIALPoints(30);
       STRInput.min = 6;
-      STRInput.value = 6;
       ENDInput.min = 5;
-      ENDInput.value = 5;
     }
     STRInput.max = 15;
     ENDInput.max = 12;
@@ -105,64 +90,71 @@ if (selectedRace === 'Human') {
 } else if (selectedRace === 'Western Super Mutant') {
   setSPECIALPoints(30);
   STRInput.min = 5;
-  STRInput.value = 5;
   STRInput.max = 13;
   if (selectedBackground === 'The Soldier') {
     ENDInput.min = 6;
-    ENDInput.value = 6;
   } else {
     ENDInput.min = 5;
-    ENDInput.value = 6;
   }
   ENDInput.max = 11;
   CHAInput.max = 7;
   if (selectedBackground === 'The Scholar') {
     INTInput.min = 3;
-    INTInput.value = 3;
   } else {
     INTInput.min = 2;
-    INTInput.value = 2;
   }
   INTInput.max = 11;
   if (selectedBackground === 'The Nightkin') {
     AGIInput.min = 2;
-    AGIInput.value = 2;
   }
 } else if (selectedRace === 'Mole Miner') {
   STRInput.min = 3;
-  STRInput.value = 3;
   STRInput.max = 12;
   ENDInput.max = 8;
   if (selectedBackground === 'Purveyor') {
     setSPECIALPoints(32);
     CHAInput.min = 2;
-    CHAInput.value = 2;
   }else if (selectedBackground === 'Supervisor') {
     setSPECIALPoints(32);
     INTInput.min = 2;
-    INTInput.value = 2;
   } else {
     setSPECIALPoints(31);
   }
   LCKInput.min = 3;
-  LCKInput.value = 3;
 } else if (selectedRace === 'Intelligent Deathclaw') {
   setSPECIALPoints(27);
   STRInput.min = 8;
-  STRInput.value = 8;
   STRInput.max = 16;
   PERInput.min = 3;
-  PERInput.value = 3;
   PERInput.max = 12;
   ENDInput.min = 5;
-  ENDInput.value = 5;
   ENDInput.max = 15;
   CHAInput.max = 5;
   INTInput.min = 4;
-  INTInput.value = 4;
   AGIInput.min = 3;
-  AGIInput.value = 3;
   AGIInput.max = 12;
+}
+
+  sessionStorage.setItem("STR", STRInput.min || 0);
+sessionStorage.setItem("PER", PERInput.min || 0);
+sessionStorage.setItem("END", ENDInput.min || 0);
+sessionStorage.setItem("CHA", CHAInput.min || 0);
+sessionStorage.setItem("INT", INTInput.min || 0);
+sessionStorage.setItem("AGI", AGIInput.min || 0);
+sessionStorage.setItem("LCK", LCKInput.min || 0);
+
+setPrevValues({
+  STR: parseInt(STRInput.min),
+  PER: parseInt(PERInput.min),
+  END: parseInt(ENDInput.min),
+  CHA: parseInt(CHAInput.min),
+  INT: parseInt(INTInput.min),
+  AGI: parseInt(AGIInput.min),
+  LCK: parseInt(LCKInput.min)
+});
+
+
+
 }
 
   var STR = parseInt(document.getElementById('strength').value);
@@ -199,7 +191,7 @@ if (selectedRace === 'Human') {
     sessionStorage.setItem("INT", prevValues.INT || 0);
     sessionStorage.setItem("AGI", prevValues.AGI || 0);
     sessionStorage.setItem("LCK", prevValues.LCK || 0);
-  } else {
+  } else if (init == true) {
     // Store the current values as previous values for the next allocation check
     setPrevValues({
       STR: parseInt(STRInput.value),
@@ -218,6 +210,8 @@ if (selectedRace === 'Human') {
     sessionStorage.setItem("INT", INT || 0);
     sessionStorage.setItem("AGI", AGI || 0);
     sessionStorage.setItem("LCK", LCK || 0);
+  } else {
+    setInit(true);
   }
 };
 const goToNextPage = () => {
@@ -235,7 +229,7 @@ document.getElementById('remainingPoints').innerText = "Points remaining: " + (S
 return (
 <div className={styles.container}>
         <Head>
-    <title>Select Your Background</title>
+    <title>What Makes You SPECIAL?</title>
     <meta name="description" content="Generated by create next app" />
     <link rel="icon" href="/favicon.ico" />
   </Head>

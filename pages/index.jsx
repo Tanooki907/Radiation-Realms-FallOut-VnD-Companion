@@ -76,12 +76,13 @@ export default function CharacterRace(props) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{" "}
+          <p>Powered by{" "}</p>
           <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
+            <Image src="/nukaCola.svg" alt="Nuka Cola" width={76} height={150} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}/>
           </span>
         </a>
       </footer>
     </div>
   );
 }
+// 

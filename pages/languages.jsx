@@ -30,9 +30,17 @@ export default function SelectLanguages() {
         switch (int) {
           case 6:
             return 2;
+          case 7:
+            return 2;
           case 8:
             return 3;
+          case 9:
+            return 3;
           case 10:
+            return 4;
+          case 11:
+            return 4;
+          case 12:
             return 4;
           default:
             return 1;
