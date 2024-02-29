@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../components/header';
+import Header from '../../components/header';
 import { withIronSessionSsr } from "iron-session/next";
-import sessionOptions from '../config/session';
-import styles from '../styles/Home.module.css';
+import sessionOptions from '../../config/session';
+import styles from '../../styles/Home.module.css';
 import Head from 'next/head';
 import Image from 'next/image';
 
@@ -28,7 +28,10 @@ export default function BackgroundSelection(props) {
     event.preventDefault();
     const selectedBackground = document.querySelector('input[name="background"]:checked').value;
     sessionStorage.setItem('selectedBackground', selectedBackground);
-    window.location.href = '/special';
+    if (selectedBackground == 'OVERLORD') {
+      sessionStorage.setItem('size', 'Huge');
+    }
+    window.location.href = '/character-creator/special';
   };
 
   useEffect(() => {
@@ -42,11 +45,11 @@ export default function BackgroundSelection(props) {
   if (selectedRace === 'Human') {
     backgroundOptions = (
       <div>
-        <input type="radio" id="background1" name="background" value="Isolationist" />
+        <input type="radio" id="background1" name="background" value="Isolationist" required/>
         <label for="background1">Isolationist</label><br />
-        <input type="radio" id="background2" name="background" value="Wanderer" />
+        <input type="radio" id="background2" name="background" value="Wanderer" required/>
         <label for="background2">Wanderer</label><br />
-        <input type="radio" id="background3" name="background" value="Wastelander" />
+        <input type="radio" id="background3" name="background" value="Wastelander" required/>
         <label for="background3">Wastelander</label><br />
       </div>
     );
@@ -54,11 +57,11 @@ export default function BackgroundSelection(props) {
     // Populate background options for Ghoul
     backgroundOptions = (
         <div>
-        <input type="radio" id="background4" name="background" value="Old World Blues" />
+        <input type="radio" id="background4" name="background" value="Old World Blues" required/>
         <label for="background4">Old World Blues</label><br />
-        <input type="radio" id="background5" name="background" value="Rigor Mortis" />
+        <input type="radio" id="background5" name="background" value="Rigor Mortis" required/>
         <label for="background5">Rigor Mortis</label><br />
-        <input type="radio" id="background6" name="background" value="You're RADical" />
+        <input type="radio" id="background6" name="background" value="You're RADical" required/>
         <label for="background6">You&apos;re RADical</label><br></br>
         </div>
     );
@@ -66,11 +69,11 @@ export default function BackgroundSelection(props) {
     // Populate background options for Synth
     backgroundOptions = (
         <div>
-        <input type="radio" id="background7" name="background" value="I Am Human"/>
+        <input type="radio" id="background7" name="background" value="I Am Human" required/>
         <label for="background7">I Am Human</label><br/>
-        <input type="radio" id="background8" name="background" value="I Am Superior"/>
+        <input type="radio" id="background8" name="background" value="I Am Superior" required/>
         <label for="background8">I Am Superior</label><br/>
-        <input type="radio" id="background9" name="background" value="I Am War"/>
+        <input type="radio" id="background9" name="background" value="I Am War" required/>
         <label for="background9">I Am War</label><br></br>
         </div>
         );
@@ -78,11 +81,11 @@ export default function BackgroundSelection(props) {
     // Populate background options for Eastern Super Mutant
     backgroundOptions = (
         <div>
-        <input type="radio" id="background10" name="background" value="Me Friend"/>
+        <input type="radio" id="background10" name="background" value="Me Friend" required/>
         <label for="background10">Me Friend</label><br/>
-        <input type="radio" id="background11" name="background" value="OVERLORD"/>
+        <input type="radio" id="background11" name="background" value="OVERLORD" required/>
         <label for="background11">OVERLORD</label><br/>
-        <input type="radio" id="background12" name="background" value="Pain Good"/>
+        <input type="radio" id="background12" name="background" value="Pain Good" required/>
         <label for="background12">Pain Good</label><br></br>
         </div>
         );
@@ -90,11 +93,11 @@ export default function BackgroundSelection(props) {
     // Populate background options for Western Super Mutant
     backgroundOptions = (
         <div>
-        <input type="radio" id="background13" name="background" value="The NightKin"/>
+        <input type="radio" id="background13" name="background" value="The NightKin" required/>
         <label for="background13">The NightKin</label><br/>
-        <input type="radio" id="background14" name="background" value="The Scholar"/>
+        <input type="radio" id="background14" name="background" value="The Scholar" required/>
         <label for="background14">The Scholar</label><br/>
-        <input type="radio" id="background15" name="background" value="The Soldier"/>
+        <input type="radio" id="background15" name="background" value="The Soldier" required/>
         <label for="background15">The Soldier</label><br></br>
         </div>
         );
@@ -102,22 +105,22 @@ export default function BackgroundSelection(props) {
     // Populate background options for Mole Miner
     backgroundOptions = (
         <div>
-        <input type="radio" id="background16" name="background" value="Juggernaut"/>
+        <input type="radio" id="background16" name="background" value="Juggernaut" required/>
         <label for="background16">Juggernaut</label><br/>
-        <input type="radio" id="background17" name="background" value="Purveyor"/>
+        <input type="radio" id="background17" name="background" value="Purveyor" required/>
         <label for="background17">Purveyor</label><br/>
-        <input type="radio" id="background18" name="background" value="Supervisor"/>
+        <input type="radio" id="background18" name="background" value="Supervisor" required/>
         <label for="background18">Supervisor</label><br></br>
         </div>
         );
   } else if (selectedRace === 'Robot') {
     backgroundOptions = (
         <div>
-        <input type="radio" id="background19" name="background" value="Domestic Personality Core"/>
+        <input type="radio" id="background19" name="background" value="Domestic Personality Core" required/>
         <label for="background19">Domestic Personality Core</label><br/>
-        <input type="radio" id="background20" name="background" value="Military Personality Core"/>
+        <input type="radio" id="background20" name="background" value="Military Personality Core" required/>
         <label for="background20">Military Personality Core</label><br/>
-        <input type="radio" id="background21" name="background" value="Specialist Personality Core"/>
+        <input type="radio" id="background21" name="background" value="Specialist Personality Core" required/>
         <label for="background21">Specialist Personality Core</label><br></br>
         </div>
         );
@@ -125,11 +128,11 @@ export default function BackgroundSelection(props) {
     // Populate background options for Intelligent Deathclaw
     backgroundOptions = (
         <div>
-        <input type="radio" id="background22" name="background" value="Gatorclaw"/>
+        <input type="radio" id="background22" name="background" value="Gatorclaw" required/>
         <label for="background22">Gatorclaw</label><br/>
-        <input type="radio" id="background23" name="background" value="Hairy Deathclaw"/>
+        <input type="radio" id="background23" name="background" value="Hairy Deathclaw" required/>
         <label for="background23">Hairy Deathclaw</label><br/>
-        <input type="radio" id="background24" name="background" value="Jackson Chameleon"/>
+        <input type="radio" id="background24" name="background" value="Jackson Chameleon" required/>
         <label for="background24">Jackson Chameleon</label><br></br>
         </div>
         );
@@ -157,13 +160,12 @@ export default function BackgroundSelection(props) {
 
       <footer className={styles.footer}>
         <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+          href="https://fallout.fandom.com/wiki/Nuka-Cola"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{" "}
           <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
+            <Image src="/PoweredByNuka.png" alt="Powered by Nuka Cola" width={576} height={288} />
           </span>
         </a>
       </footer>

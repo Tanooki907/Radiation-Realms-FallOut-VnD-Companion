@@ -1,8 +1,11 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+import { Schema, model, models } from 'mongoose'
 
 const charSchema = new Schema({
   name: {
+    type: String,
+    required: true
+  },
+  madeBy: {
     type: String,
     required: true
   },
@@ -111,10 +114,7 @@ const charSchema = new Schema({
     type: Number,
     required: true
   },
-  RR: {
-    type: Number,
-    required: true
-  },
+  RR: Number,
   SQ: {
     type: Number,
     required: true
@@ -242,6 +242,11 @@ const charSchema = new Schema({
   Perks: [String],
 })
 
-const Char = mongoose.model('Char', charSchema);
+let Char;
+try {
+  Char = models.Char || model('Char', charSchema);
+} catch (error) {
 
-module.exports = Char;
+}
+
+export default Char;

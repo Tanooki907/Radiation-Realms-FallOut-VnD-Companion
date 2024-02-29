@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../components/header';
+import Header from '../../components/header';
 import { withIronSessionSsr } from "iron-session/next";
-import sessionOptions from '../config/session';
-import styles from '../styles/Home.module.css';
+import sessionOptions from '../../config/session';
+import styles from '../../styles/Home.module.css';
 import Head from 'next/head';
 import Image from 'next/image';
 
@@ -115,7 +115,7 @@ export default function SkillDistribution(props) {
 
       if (totalPoints === 40) {
         // Proceed to the next page
-        window.location.href = '/tag-skills';
+        window.location.href = '/character-creator/tag-skills';
       } else {
         alert('Please distribute exactly 40 background skill points across all skills before proceeding. You have spent a total of ' + totalPoints + ' points.');
       }
@@ -350,17 +350,16 @@ export default function SkillDistribution(props) {
       <button id="proceedButton">Proceed to Next Page</button>
 
       <footer className={styles.footer}>
-    <a
-      href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Powered by{" "}
-      <span className={styles.logo}>
-        <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-      </span>
-    </a>
-  </footer>
+        <a
+          href="https://fallout.fandom.com/wiki/Nuka-Cola"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span className={styles.logo}>
+            <Image src="/PoweredByNuka.png" alt="Powered by Nuka Cola" width={576} height={288} />
+          </span>
+        </a>
+      </footer>
     </div>
   );
 } // 

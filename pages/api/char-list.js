@@ -2,14 +2,14 @@ import db from "@/db";
 
 export default async function handler(req, res) {
     if (req.method === "POST") {
-  
+        const username = req.body.username;
       try {
   
-        // Insert the location into the Favorite Locations table
-        await db.char.add(req.body.charData);
+
+        const chars = await db.char.find(username);
   
         // Send a success response
-        res.status(200).json({ message: "Success" });
+        res.status(200).json(chars);
       } catch (error) {
         console.error("Error:", error);
         // Send an error response
@@ -19,4 +19,4 @@ export default async function handler(req, res) {
       // Send a method not allowed response
       res.status(405).json({ message: "Method not allowed" });
     }
-  }
+  } // 

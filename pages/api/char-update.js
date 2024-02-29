@@ -1,12 +1,14 @@
 import db from "@/db";
 
 export default async function handler(req, res) {
+    const id = req.body.id;
+    const charData = req.body.charData;
+    
     if (req.method === "POST") {
-  
       try {
   
-        // Insert the location into the Favorite Locations table
-        await db.char.add(req.body.charData);
+
+        await db.char.edit(id, charData);
   
         // Send a success response
         res.status(200).json({ message: "Success" });
@@ -19,4 +21,4 @@ export default async function handler(req, res) {
       // Send a method not allowed response
       res.status(405).json({ message: "Method not allowed" });
     }
-  }
+  } // 

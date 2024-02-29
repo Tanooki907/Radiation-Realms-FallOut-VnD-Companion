@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../components/header';
+import Header from '../../components/header';
 import { withIronSessionSsr } from "iron-session/next";
-import sessionOptions from '../config/session';
-import styles from '../styles/Home.module.css';
+import sessionOptions from '../../config/session';
+import styles from '../../styles/Home.module.css';
 import Head from 'next/head';
 import Image from 'next/image';
 
@@ -217,7 +217,9 @@ setPrevValues({
 const goToNextPage = () => {
 // Redirect to the next page
 if (allocatedPoints === SPECIALPoints){
-  window.location.href = "/languages";
+  window.location.href = "/character-creator/languages";
+} else {
+  alert('Please spend all of your SPECIAL points before proceeding.')
 }
 };
 
@@ -265,17 +267,16 @@ return (
   </form>
 
   <footer className={styles.footer}>
-    <a
-      href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Powered by{" "}
-      <span className={styles.logo}>
-        <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-      </span>
-    </a>
-  </footer>
+        <a
+          href="https://fallout.fandom.com/wiki/Nuka-Cola"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span className={styles.logo}>
+            <Image src="/PoweredByNuka.png" alt="Powered by Nuka Cola" width={576} height={288} />
+          </span>
+        </a>
+      </footer>
 </div>
 );
 } //
