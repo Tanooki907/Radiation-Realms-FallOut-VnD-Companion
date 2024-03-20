@@ -2,8 +2,6 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
@@ -11,16 +9,66 @@ a {
   text-decoration: none;
 }
 
+p,
+td,
+legend,
+li {
+  font-family: 'Bitwise';
+  color: #66ff00;
+  text-align: center;
+}
+
+h1,
+h2,
+h3,
+th {
+  font-family: 'Overseer';
+  color: #66ff00;
+  text-align: center;
+}
+
+body {
+  background-color: #000; /* Set the background color to black */
+}
+
+hr {
+  border-color: #66ff00;
+}
+
 * {
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+label {
+  font-family: 'Bitwise';
+  color: #66ff00;
+}
+
+input,
+button,
+select {
+  font-family: 'Bitwise';
+  color: black;
+  background-color: #66ff00;
+}
+
+ul {
+  list-style-position: inside; /* Place the bullets inside the list item */
+  text-align: center; /* Center the text within the list item */
+}
+
+li {
+  display: block; /* Ensure the list items are displayed as block elements */
+}
+
+@font-face {
+  font-family: 'Bitwise';
+  src: url(/public/Fonts/Bitwise.ttf);
+  /* Add additional font formats as needed */
+}
+
+@font-face {
+  font-family: 'Overseer';
+  src: url(/public/Fonts/Overseer.otf),
+  /* Add additional font formats as needed */
 }

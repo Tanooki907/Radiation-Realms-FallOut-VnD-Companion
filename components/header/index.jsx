@@ -2,6 +2,7 @@ import styles from "./style.module.css";
 import Link from "next/link";
 import useLogout from "../../hooks/useLogout";
 import React, { useState, useEffect } from "react";
+import Image from 'next/image';
 
 export default function Header(props) {
   const logout = useLogout();
@@ -32,9 +33,7 @@ export default function Header(props) {
     <header className={styles.container}>
       {props.isLoggedIn ? (
         <>
-          <p>
-            <Link href="/">Home</Link>
-          </p>
+            <Link href="/"><Image src="/Logo.png" alt="Radiation Realms" width={100} height={57} /></Link>
           <div className={styles.container}>
             <p>Welcome, {props.username}!</p>
             <div className={styles.dropdown}>
@@ -66,7 +65,7 @@ export default function Header(props) {
       ) : (
         <>
           <p>
-            <Link href="/">Home</Link>
+          <Link href="/"><Image src="/Logo.png" alt="Radiation Realms" width={100} height={57} /></Link>
           </p>
           <p>
             <Link href="/login">Login</Link>
