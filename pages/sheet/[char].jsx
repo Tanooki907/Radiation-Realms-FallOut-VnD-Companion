@@ -30,7 +30,9 @@ function UserSelectionSummary(props) {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setEditedCharacter({ ...editedCharacter, [name]: value }); // Update the editableCharacter state with the new value
+    if (value !== ''){
+      setEditedCharacter({ ...editedCharacter, [name]: value }); // Update the editableCharacter state with the new value
+    }
   };
 
   const handleFormSubmit = async (event) => {

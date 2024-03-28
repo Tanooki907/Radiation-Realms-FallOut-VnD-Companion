@@ -35,128 +35,13 @@ LCK: 1
 const [allocatedPoints, setAllocatedPoints] = useState(0);
 const [init, setInit] = useState(false);
 const updatePoints = (event) => {
-var selectedRace = sessionStorage.getItem('selectedRace');
-var selectedBackground = sessionStorage.getItem('selectedBackground');
-var STRInput = document.getElementById('strength');
-var PERInput = document.getElementById('perception');
-var ENDInput = document.getElementById('endurance');
-var CHAInput = document.getElementById('charisma');
-var INTInput = document.getElementById('intelligence');
-var AGIInput = document.getElementById('agility');
-var LCKInput = document.getElementById('luck');
-if (SPECIALPoints == 0) {
-  if (selectedRace === 'Human') {
-    if (selectedBackground === 'Wanderer') {
-        setSPECIALPoints(35);
-    } else {
-        setSPECIALPoints(33);
-    }
-} else if (selectedRace === 'Ghoul') {
-    if (selectedBackground === 'Old World Blues') {
-        setSPECIALPoints(30);
-    } else {
-        setSPECIALPoints(28);
-    }
-  STRInput.max = 8;
-  PERInput.min = 2;
-  ENDInput.max = 8;
-  if (selectedBackground === "You're RADical") {
-    CHAInput.min = 2;
-  }
-  INTInput.min = 3;
-  INTInput.max = 12;
-  LCKInput.min = 5;
-  LCKInput.max = 12;
-} else if (selectedRace === 'Synth') {
-    if (selectedBackground === 'I Am Superior') {
-        setSPECIALPoints(36);
-    } else {
-        setSPECIALPoints(33);
-    }
-} else if (selectedRace === 'Eastern Super Mutant') {
-    if (selectedBackground === 'OVERLORD') {
-      setSPECIALPoints(32);
-      STRInput.min = 7;
-      ENDInput.min = 6;
-    } else {
-      setSPECIALPoints(30);
-      STRInput.min = 6;
-      ENDInput.min = 5;
-    }
-    STRInput.max = 15;
-    ENDInput.max = 12;
-    CHAInput.max = 5;
-    INTInput.max = 7;
-} else if (selectedRace === 'Western Super Mutant') {
-  setSPECIALPoints(30);
-  STRInput.min = 5;
-  STRInput.max = 13;
-  if (selectedBackground === 'The Soldier') {
-    ENDInput.min = 6;
-  } else {
-    ENDInput.min = 5;
-  }
-  ENDInput.max = 11;
-  CHAInput.max = 7;
-  if (selectedBackground === 'The Scholar') {
-    INTInput.min = 3;
-  } else {
-    INTInput.min = 2;
-  }
-  INTInput.max = 11;
-  if (selectedBackground === 'The Nightkin') {
-    AGIInput.min = 2;
-  }
-} else if (selectedRace === 'Mole Miner') {
-  STRInput.min = 3;
-  STRInput.max = 12;
-  ENDInput.max = 8;
-  if (selectedBackground === 'Purveyor') {
-    setSPECIALPoints(32);
-    CHAInput.min = 2;
-  }else if (selectedBackground === 'Supervisor') {
-    setSPECIALPoints(32);
-    INTInput.min = 2;
-  } else {
-    setSPECIALPoints(31);
-  }
-  LCKInput.min = 3;
-} else if (selectedRace === 'Intelligent Deathclaw') {
-  setSPECIALPoints(27);
-  STRInput.min = 8;
-  STRInput.max = 16;
-  PERInput.min = 3;
-  PERInput.max = 12;
-  ENDInput.min = 5;
-  ENDInput.max = 15;
-  CHAInput.max = 5;
-  INTInput.min = 4;
-  AGIInput.min = 3;
-  AGIInput.max = 12;
-}
-
-  sessionStorage.setItem("STR", STRInput.min || 0);
-sessionStorage.setItem("PER", PERInput.min || 0);
-sessionStorage.setItem("END", ENDInput.min || 0);
-sessionStorage.setItem("CHA", CHAInput.min || 0);
-sessionStorage.setItem("INT", INTInput.min || 0);
-sessionStorage.setItem("AGI", AGIInput.min || 0);
-sessionStorage.setItem("LCK", LCKInput.min || 0);
-
-setPrevValues({
-  STR: parseInt(STRInput.min),
-  PER: parseInt(PERInput.min),
-  END: parseInt(ENDInput.min),
-  CHA: parseInt(CHAInput.min),
-  INT: parseInt(INTInput.min),
-  AGI: parseInt(AGIInput.min),
-  LCK: parseInt(LCKInput.min)
-});
-
-
-
-}
-
+  var STRInput = document.getElementById('strength');
+  var PERInput = document.getElementById('perception');
+  var ENDInput = document.getElementById('endurance');
+  var CHAInput = document.getElementById('charisma');
+  var INTInput = document.getElementById('intelligence');
+  var AGIInput = document.getElementById('agility');
+  var LCKInput = document.getElementById('luck');
   var STR = parseInt(document.getElementById('strength').value);
   var PER = parseInt(document.getElementById('perception').value);
   var END = parseInt(document.getElementById('endurance').value);
@@ -191,7 +76,7 @@ setPrevValues({
     sessionStorage.setItem("INT", prevValues.INT || 0);
     sessionStorage.setItem("AGI", prevValues.AGI || 0);
     sessionStorage.setItem("LCK", prevValues.LCK || 0);
-  } else if (init == true) {
+  } else {
     // Store the current values as previous values for the next allocation check
     setPrevValues({
       STR: parseInt(STRInput.value),
@@ -210,9 +95,9 @@ setPrevValues({
     sessionStorage.setItem("INT", INT || 0);
     sessionStorage.setItem("AGI", AGI || 0);
     sessionStorage.setItem("LCK", LCK || 0);
-  } else {
-    setInit(true);
   }
+  console.log(allocatedPoints);
+  console.log(SPECIALPoints);
 };
 const goToNextPage = () => {
 // Redirect to the next page
@@ -224,8 +109,153 @@ if (allocatedPoints === SPECIALPoints){
 };
 
 useEffect(() => {
+  // Run the updatePoints function when the component mounts
+  var selectedRace = sessionStorage.getItem('selectedRace');
+  var selectedBackground = sessionStorage.getItem('selectedBackground');
+  var STRInput = document.getElementById('strength');
+  var PERInput = document.getElementById('perception');
+  var ENDInput = document.getElementById('endurance');
+  var CHAInput = document.getElementById('charisma');
+  var INTInput = document.getElementById('intelligence');
+  var AGIInput = document.getElementById('agility');
+  var LCKInput = document.getElementById('luck');
+  if (SPECIALPoints == 0) {
+    if (selectedRace === 'Human') {
+      if (selectedBackground === 'Wanderer') {
+          setSPECIALPoints(35);
+          document.getElementById('remainingPoints').innerText = "Points remaining: 35";
+      } else {
+          setSPECIALPoints(33);
+          document.getElementById('remainingPoints').innerText = "Points remaining: 33";
+      }
+  } else if (selectedRace === 'Ghoul') {
+      if (selectedBackground === 'Old World Blues') {
+          setSPECIALPoints(30);
+          document.getElementById('remainingPoints').innerText = "Points remaining: 30";
+      } else {
+          setSPECIALPoints(28);
+          document.getElementById('remainingPoints').innerText = "Points remaining: 28";
+      }
+    STRInput.max = 8;
+    PERInput.min = 2;
+    ENDInput.max = 8;
+    if (selectedBackground === "You're RADical") {
+      CHAInput.min = 2;
+    }
+    INTInput.min = 3;
+    INTInput.max = 12;
+    LCKInput.min = 5;
+    LCKInput.max = 12;
+  } else if (selectedRace === 'Synth') {
+      if (selectedBackground === 'I Am Superior') {
+          setSPECIALPoints(36);
+          document.getElementById('remainingPoints').innerText = "Points remaining: 36";
+      } else {
+          setSPECIALPoints(33);
+          document.getElementById('remainingPoints').innerText = "Points remaining: 33";
+      }
+  } else if (selectedRace === 'Eastern Super Mutant') {
+      if (selectedBackground === 'OVERLORD') {
+        setSPECIALPoints(30);
+        STRInput.min = 7;
+        ENDInput.min = 6;
+      } else {
+        setSPECIALPoints(30);
+        STRInput.min = 6;
+        ENDInput.min = 5;
+      }
+      STRInput.max = 15;
+      ENDInput.max = 12;
+      CHAInput.max = 5;
+      INTInput.max = 7;
+      document.getElementById('remainingPoints').innerText = "Points remaining: 30";
+  } else if (selectedRace === 'Western Super Mutant') {
+    setSPECIALPoints(29);
+    document.getElementById('remainingPoints').innerText = "Points remaining: 29";
+    STRInput.min = 5;
+    STRInput.max = 13;
+    if (selectedBackground === 'The Soldier') {
+      ENDInput.min = 6;
+    } else {
+      ENDInput.min = 5;
+    }
+    ENDInput.max = 11;
+    CHAInput.max = 7;
+    if (selectedBackground === 'The Scholar') {
+      INTInput.min = 3;
+    } else {
+      INTInput.min = 2;
+    }
+    INTInput.max = 11;
+    if (selectedBackground === 'The Nightkin') {
+      AGIInput.min = 2;
+    }
+  } else if (selectedRace === 'Mole Miner') {
+    STRInput.min = 3;
+    STRInput.max = 12;
+    ENDInput.max = 8;
+    if (selectedBackground === 'Purveyor') {
+      setSPECIALPoints(31);
+      CHAInput.min = 2;
+      document.getElementById('remainingPoints').innerText = "Points remaining: 31";
+    }else if (selectedBackground === 'Supervisor') {
+      setSPECIALPoints(31);
+      INTInput.min = 2;
+      document.getElementById('remainingPoints').innerText = "Points remaining: 31";
+    } else {
+      setSPECIALPoints(31);
+      document.getElementById('remainingPoints').innerText = "Points remaining: 31";
+    }
+    LCKInput.min = 3;
+  } else if (selectedRace === 'Intelligent Deathclaw') {
+    setSPECIALPoints(27);
+    STRInput.min = 8;
+    STRInput.max = 16;
+    PERInput.min = 3;
+    PERInput.max = 12;
+    ENDInput.min = 5;
+    ENDInput.max = 15;
+    CHAInput.max = 5;
+    INTInput.min = 4;
+    AGIInput.min = 3;
+    AGIInput.max = 12;
+    document.getElementById('remainingPoints').innerText = "Points remaining: 27";
+  }
+  
+    sessionStorage.setItem("STR", STRInput.min || 0);
+  sessionStorage.setItem("PER", PERInput.min || 0);
+  sessionStorage.setItem("END", ENDInput.min || 0);
+  sessionStorage.setItem("CHA", CHAInput.min || 0);
+  sessionStorage.setItem("INT", INTInput.min || 0);
+  sessionStorage.setItem("AGI", AGIInput.min || 0);
+  sessionStorage.setItem("LCK", LCKInput.min || 0);
+  
+  setPrevValues({
+    STR: parseInt(STRInput.min),
+    PER: parseInt(PERInput.min),
+    END: parseInt(ENDInput.min),
+    CHA: parseInt(CHAInput.min),
+    INT: parseInt(INTInput.min),
+    AGI: parseInt(AGIInput.min),
+    LCK: parseInt(LCKInput.min)
+  });
+
+  setAllocatedPoints(0);
+  
+  
+  }
+}, []); // Empty dependency array ensures the effect runs only once after the initial render
+
+useEffect(() => {
 // Update the content of the <p> element with the id 'remainingPoints'
-document.getElementById('remainingPoints').innerText = "Points remaining: " + (SPECIALPoints - allocatedPoints);
+if (allocatedPoints === 0) {
+  document.getElementById('remainingPoints').innerText = "Points remaining: " + (SPECIALPoints);
+} else if (isNaN(allocatedPoints)) {
+  return
+} else {
+  document.getElementById('remainingPoints').innerText = "Points remaining: " + (SPECIALPoints - allocatedPoints);
+}
+console.log(SPECIALPoints + ' - ' + allocatedPoints + ' = ' + (SPECIALPoints - allocatedPoints))
 }, [SPECIALPoints, allocatedPoints]);
 
 return (
