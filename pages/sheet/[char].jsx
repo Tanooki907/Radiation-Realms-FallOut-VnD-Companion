@@ -46,7 +46,7 @@ function UserSelectionSummary(props) {
         },
         body: JSON.stringify({ id: character._id, charData: editedCharacter}),
       });
-      if (res.status === 200) return window.location.reload();
+      if (res.status === 200) alert(`Character data saved for ${router.query.char}.`)
     } catch (error) {
       console.error('Error saving edited character:', error);
     }
