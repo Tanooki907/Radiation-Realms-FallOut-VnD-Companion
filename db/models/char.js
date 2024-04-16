@@ -135,6 +135,10 @@ const charSchema = new Schema({
     type: Number,
     required: true
   },
+  LP: Number,
+  MaxLP: Number,
+  GP: Number,
+  MaxGP: Number,
   Trait1: String,
   Trait2: String,
   cybernetics: [String],

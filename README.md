@@ -1,5 +1,17 @@
 # Radiation-Realms-FallOut-VnD-Companion
 
-Have you wanted to play Fallout: Vaults and Deathclaws, but are struggling with hundreds of pieces of paper? Well, worry no more - our Vault-Tec patented RPG companion system, Radiation Realms, will cover all that stuff for you! Now have your character's sheet be pulled up at a moment's notice, and have all the relevant info you need right at your fingertips. As if that weren't enough, we also have some possibilities planned out for your friendly Vault Overseer! Sit back, relax, and enjoy your recreational distraction from your boring and banal lifestyle - the way it was meant to be enjoyed!
+Attention, dwellers of the wasteland! Vault-Tec is proud to present **Radiation Realms - The Fallout: Vaults and Deathclaws Companion**, the premier web app designed to enhance your tabletop gaming experience. 
 
-(Although this app is planned to have online access eventually, we do not have things up and running just yet. If you wish to see the in-progress app, simply download all the files, open VisualStudioCode, and in the terminal (set to WSL) run the command 'npm i' to install the dependencies, then 'npm run dev'. Be sure to make a .env.local file in the main directory and put in a 62-char password for the IRON_PASS).
+Are you tired of sifting through mountains of rulebooks and scribbling down endless stats? Fear not! Radiation Realms is here to streamline your adventure. With our intuitive interface, you can create and customize your very own wasteland wanderer. Choose from a variety of backgrounds, attributes, and skills to fit your playstyle - whether you're a smooth-talking negotiator or a hardened survivalist.
+
+And for those who find themselves overwhelmed by the numerical nuances of the Fallout universe, we've got you covered. Our app simplifies the complexity, allowing you to focus on what truly matters - the story, the strategy, and the camaraderie of your gaming group.
+
+While the online rulebook and the item/perk tracking features are still under construction, rest assured that Vault-Tec engineers are working tirelessly to bring these tools online. Your feedback is invaluable as we continue to develop and deploy enhancements to make Radiation Realms the ultimate companion for Fallout: Vaults and Deathclaws.
+
+So, what are you waiting for? Sign up for early access today and take the first step towards reclaiming the wasteland. With Radiation Realms, you're not just surviving; you're thriving!
+
+Remember, with Vault-Tec, you're prepared for the future!
+
+Join the site [here.](https://radiation-realms.vercel.app/)
+
+*(Attention, esteemed collaborators! Should you desire to partake in the enhancement of our digital domicile, initiate a dialogue within the 'issues' tab, presenting your innovative concepts. Subsequently, we shall engage in a constructive exchange on the integration of your valuable contributions to our site. Onward, to progress!)*

@@ -86,13 +86,13 @@ function UserSelectionSummary(props) {
       }
       const selectedRace = character.selectedRace;
       const selectedBackground = character.selectedBackground;
-      const STR = editedCharacter.STR;
-      const PER = editedCharacter.PER;
-      const END = editedCharacter.END;
-      const CHA = editedCharacter.CHA;
-      const INT = editedCharacter.INT;
-      const AGI = editedCharacter.AGI;
-      const LCK = editedCharacter.LCK;
+      const STR = character.STR;
+      const PER = character.PER;
+      const END = character.END;
+      const CHA = character.CHA;
+      const INT = character.INT;
+      const AGI = character.AGI;
+      const LCK = character.LCK;
       const selectedLanguages = character.Languages;
       const skills = [
         'MeleeWpn', 'Throw', 'Unarm', 'Arch', 'BigGn', 'NRG', 'SmGn', 'Smith', 'Chem', 'Com', 'Doc', 'Engineer', 'Gunsmith', 'Charm', 'Dec', 'Ins', 'Int', 'Gam', 'Lore', 'Obs', 'Pilot', 'SoH', 'Sneak', 'Surviv'
@@ -115,6 +115,10 @@ function UserSelectionSummary(props) {
       const SS = character.SS;
       const VP = character.VP;
       const VL = character.VL;
+      const LP = character.LP;
+      const maxLP = character.maxLP;
+      const GP = character.GP;
+      const maxGP = character.maxGP;
 
       if (!RR) {
         RR = 'Immune';
@@ -305,6 +309,20 @@ function UserSelectionSummary(props) {
         <td><input type='number' name='VP' value={editedCharacter.VP} onChange={handleInputChange} id='VP'></input></td>
         <td><input type="number" name='VL' value={editedCharacter.VL} onChange={handleInputChange} id='VL' /></td>
       </tr>
+      {character.Lore >= 20 && character.INT >= 6 ? (
+              <tr>
+              <td>Lore Points (LP)</td>
+              <td><input type='number' name='LP' value={editedCharacter.LP} onChange={handleInputChange} id='VP'></input></td>
+              <td><input type="number" name='MaxLP' value={editedCharacter.MaxLP} onChange={handleInputChange} id='VL' /></td>
+            </tr>
+      ) : null}
+      {character.Gam >= 25 && character.LCK >= 6 ? (
+              <tr>
+              <td>Gamble Points (GP)</td>
+              <td><input type='number' name='GP' value={editedCharacter.GP} onChange={handleInputChange} id='VP'></input></td>
+              <td><input type="number" name='MaxGP' value={editedCharacter.MaxGP} onChange={handleInputChange} id='VL' /></td>
+            </tr>
+      ) : null}
     </tbody>
       </div>
       <h3>Languages:</h3>

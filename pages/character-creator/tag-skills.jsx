@@ -203,6 +203,8 @@ export default function SkillTagging(props) {
     var SS;
     var VP;
     var SQ;
+    var LP;
+    var GP;
 
     if (selectedRace == 'Human') {
       AP = Math.ceil(5 + (AGI/2) + 1);
@@ -317,6 +319,18 @@ export default function SkillTagging(props) {
         VP = CHA + 1
       }
 
+      if (INT >= 6) {
+        if (selectedBackground == 'Old World Blues') {
+        LP = Math.floor(2 + (sessionStorage.getItem('Lore')/20));
+      } else {
+        LP = Math.floor(sessionStorage.getItem('Lore')/20);
+      }
+    }
+
+    if (LCK >= 6) {
+      GP = Math.floor(sessionStorage.getItem('Gam')/25);
+    }
+
     const charData = {
       name: name,
       madeBy: props.user.username,
@@ -353,6 +367,10 @@ export default function SkillTagging(props) {
       SS: SS,
       VP: VP,
       VL: VP,
+      LP: LP,
+      MaxLP: LP,
+      GP: GP,
+      MaxGP: GP,
       Languages: JSON.parse(sessionStorage.getItem('selectedLanguages')),
       MeleeWpn: sessionStorage.getItem('MeleeWpn'),
       Throw: sessionStorage.getItem('Throw'),
