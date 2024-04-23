@@ -23,6 +23,7 @@ export const getServerSideProps = withIronSessionSsr(
 
 export default function SelectLanguages(props) {
     const [checkboxes, setCheckboxes] = useState([]);
+    const [maxAllowed, setMaxAllowed] = useState(0);
   useEffect(() => {
     const selectedBackground = sessionStorage.getItem('selectedBackground');
     // Define the available languages
@@ -42,10 +43,6 @@ export default function SelectLanguages(props) {
     // Add event listener to restrict the number of checkboxes that can be checked
     const handleCheckboxChange = (event) => {
         const checkedCount = Array.from(document.querySelectorAll('input[name="selectedLanguages"]:checked')).length;
-        const maxAllowed = getMaxAllowed(characterINT);
-        if (selectedBackground == 'Supervisor') {
-          maxAllowed += 1;
-        }
         if (checkedCount > maxAllowed) {
           event.target.checked = false;
         }
@@ -72,6 +69,12 @@ export default function SelectLanguages(props) {
         }
       };
 
+      if (selectedBackground == 'Supervisor') {
+        setMaxAllowed(getMaxAllowed(characterINT) + 1);
+      } else {
+        setMaxAllowed(getMaxAllowed(characterINT));
+      }
+
     const checkboxes = availableLanguages.map(lang => (
       <div key={lang}>
         <input type="checkbox" name="selectedLanguages" value={lang} id={lang.toLowerCase()} onChange={handleCheckboxChange} />
@@ -87,7 +90,6 @@ export default function SelectLanguages(props) {
       event.preventDefault(); // Prevent the form from submitting normally
 
       const checkedCount = Array.from(document.querySelectorAll('input[name="selectedLanguages"]:checked')).length;
-      const maxAllowed = getMaxAllowed(characterINT);
 
       if (checkedCount < maxAllowed){
         alert(`You may select ${maxAllowed} languages. Please select ${maxAllowed} languages before proceeding.`);
@@ -126,7 +128,7 @@ export default function SelectLanguages(props) {
       <main className={styles.main}>
       <form id="languagesForm">
         <fieldset>
-          <legend>Select your languages:</legend>
+          <legend>Select {maxAllowed} languages:</legend>
           <div id="languageOptions">
             {checkboxes}
           </div>

@@ -65,6 +65,10 @@ export const getServerSideProps = withIronSessionSsr(
 
       <p>So, what are you waiting for? Join the Radiation Realms community and revolutionize the way you play Fallout: Vaults & Deathclaws. Say goodbye to the hassle of character management and hello to a smoother, more streamlined gaming experience. Get ready to unleash your inner wasteland legend with Radiation Realms—because in the world of Fallout, every number counts.</p>
 
+      {props.isLoggedIn ? null : (
+                <h2>Sign up with Vault-Tec, and create your wastelander today!</h2>
+      )}
+
       <footer className={styles.footer}>
         <a
           href="https://fallout.fandom.com/wiki/Nuka-Cola"

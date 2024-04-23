@@ -70,6 +70,9 @@ export default function Header(props) {
           <p>
             <Link href="/login">Login</Link>
           </p>
+          <p>
+            <Link href="/signup">Sign Up</Link>
+          </p>
         </>
       )}
     </header>
