@@ -65,14 +65,16 @@ export default function Header(props) {
       ) : (
         <>
           <p>
-          <Link href="/"><Image src="/Logo.png" alt="Radiation Realms" width={100} height={57} /></Link>
+          <Link href="/"><Image src="/Logo.png" alt="Radiation Realms" width={140} height={57} style={{ paddingLeft: "40px" }}/></Link>
           </p>
+          <div style={{ paddingRight: "40px" }}>
           <p>
             <Link href="/login">Login</Link>
           </p>
           <p>
             <Link href="/signup">Sign Up</Link>
           </p>
+          </div>
         </>
       )}
     </header>
