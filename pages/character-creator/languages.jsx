@@ -22,58 +22,46 @@ export const getServerSideProps = withIronSessionSsr(
 );
 
 export default function SelectLanguages(props) {
-    const [checkboxes, setCheckboxes] = useState([]);
-    const [maxAllowed, setMaxAllowed] = useState(0);
+  const [checkboxes, setCheckboxes] = useState([]);
+  const [maxAllowed, setMaxAllowed] = useState(0);
+
   useEffect(() => {
     const selectedBackground = sessionStorage.getItem('selectedBackground');
-    // Define the available languages
     const allLanguages = ["Arabic", "Binary", "English", "French", "German", "Italian", "Japanese", "Mandarin", "Morse Code", "Russian", "Sign Language", "Tribal"];
-
-    // Get the character's INT attribute from sessionStorage
     const characterINT = parseInt(sessionStorage.getItem('INT')) || 0;
+    let availableLanguages = [...allLanguages];
 
-    // Exclude languages based on character's INT attribute
-    let availableLanguages = [...allLanguages]; // Create a copy of allLanguages
     if (characterINT <= 5) {
-      // Exclude certain languages for INT 5 or lower
       const excludedLanguages = ["Binary", "Morse Code", "Sign Language"];
       availableLanguages = availableLanguages.filter(lang => !excludedLanguages.includes(lang));
     }
 
-    // Add event listener to restrict the number of checkboxes that can be checked
-    const handleCheckboxChange = (event) => {
-        const checkedCount = Array.from(document.querySelectorAll('input[name="selectedLanguages"]:checked')).length;
-        if (checkedCount > maxAllowed) {
-          event.target.checked = false;
-        }
-      };
-    
-      const getMaxAllowed = (int) => {
-        switch (int) {
-          case 6:
-            return 2;
-          case 7:
-            return 2;
-          case 8:
-            return 3;
-          case 9:
-            return 3;
-          case 10:
-            return 4;
-          case 11:
-            return 4;
-          case 12:
-            return 4;
-          default:
-            return 1;
-        }
-      };
-
-      if (selectedBackground == 'Supervisor') {
-        setMaxAllowed(getMaxAllowed(characterINT) + 1);
-      } else {
-        setMaxAllowed(getMaxAllowed(characterINT));
+    const getMaxAllowed = (int) => {
+      switch (int) {
+        case 6:
+        case 7:
+          return 2;
+        case 8:
+        case 9:
+          return 3;
+        case 10:
+        case 11:
+        case 12:
+          return 4;
+        default:
+          return 1;
       }
+    };
+
+    let max = selectedBackground === 'Supervisor' ? getMaxAllowed(characterINT + 1) : getMaxAllowed(characterINT);
+    setMaxAllowed(max);
+
+    const handleCheckboxChange = (event) => {
+      const checkedCount = Array.from(document.querySelectorAll('input[name="selectedLanguages"]:checked')).length;
+      if (checkedCount > max) {
+        event.target.checked = false;
+      }
+    };
 
     const checkboxes = availableLanguages.map(lang => (
       <div key={lang}>
@@ -85,29 +73,23 @@ export default function SelectLanguages(props) {
 
     setCheckboxes(checkboxes);
 
-    // Add form submission event listener to save selected languages to sessionStorage
     const handleFormSubmit = (event) => {
-      event.preventDefault(); // Prevent the form from submitting normally
-
+      event.preventDefault();
       const checkedCount = Array.from(document.querySelectorAll('input[name="selectedLanguages"]:checked')).length;
 
-      if (checkedCount < maxAllowed){
-        alert(`You may select ${maxAllowed} languages. Please select ${maxAllowed} languages before proceeding.`);
+      if (checkedCount < max){
+        alert(`You may select ${max} languages. Please select ${max} languages before proceeding.`);
         return;
       }
-      // Save the selected languages to sessionStorage
+
       const selectedLanguages = Array.from(document.querySelectorAll('input[name="selectedLanguages"]:checked'), input => input.value);
       sessionStorage.setItem('selectedLanguages', JSON.stringify(selectedLanguages));
-
-      // Proceed to the next page or perform any other necessary action
       window.location.href = '/character-creator/skillsbg';
     };
 
-    // Attach event listeners
     const form = document.getElementById('languagesForm');
     form.addEventListener('submit', handleFormSubmit);
 
-    // Cleanup
     return () => {
       form.removeEventListener('submit', handleFormSubmit);
     };
