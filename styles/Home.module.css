@@ -6,7 +6,7 @@
 
 @font-face {
   font-family: 'Overseer';
-  src: url(/Fonts/Overseer.otf),
+  src: url(/Fonts/Overseer.otf) format('opentype'),
   /* Add additional font formats as needed */
 }
 
