@@ -1,12 +1,12 @@
 @font-face {
   font-family: 'Bitwise';
-  src: url(/public/Fonts/Bitwise.ttf);
+  src: url(/Fonts/Bitwise.ttf);
   /* Add additional font formats as needed */
 }
 
 @font-face {
   font-family: 'Overseer';
-  src: url(/public/Fonts/Overseer.otf),
+  src: url(/Fonts/Overseer.otf),
   /* Add additional font formats as needed */
 }
 
