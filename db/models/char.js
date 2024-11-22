@@ -243,6 +243,10 @@ const charSchema = new Schema({
     type: Number,
     required: true
   },
+  TaggedSkills: {
+    type: [String],
+    required: true
+  },
   Perks: [String],
 })
 

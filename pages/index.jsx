@@ -28,7 +28,7 @@ export const getServerSideProps = withIronSessionSsr(
     useEffect(() => {
       async function fetchQuote() {
         try {
-          const response = await fetch('https://api.quotable.io/quotes/random?tags=age|change|conservative|courage|freedom|future|history|honor|opportunity|pain|perseverance|politics|power-quotes|science|society|technology|truth|virtue|war|work');
+          const response = await fetch('https://johndturn-quotableapiproxy.web.val.run/quotes/random?tags=age|change|conservative|courage|freedom|future|history|honor|opportunity|pain|perseverance|politics|power-quotes|science|society|technology|truth|virtue|war|work');
           if (response.ok) {
             const data = await response.json();
             setQuote({ content: data[0].content, author: data[0].author });

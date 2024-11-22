@@ -174,13 +174,15 @@ export default function SkillTagging(props) {
     } else {
     // Increase the level of all tagged skills by 20 in sessionStorage
     const taggedSkills = Array.from(document.querySelectorAll('input[name="taggedSkills"]:checked'), input => input.value);
+    sessionStorage.setItem('taggedSkills', taggedSkills);
     taggedSkills.forEach(skill => {
       if (selectedBackground == 'I Am Human') {
         sessionStorage.setItem(skill, availableSkills[skill] + 35);
       } else {
         sessionStorage.setItem(skill, availableSkills[skill] + 20);
       }
-    });
+    }
+  );
 
     if (selectedBackground == 'The Nightkin') {
       sessionStorage.setItem(Sneak, (sessionStorage.getItem(Sneak) + 25));
@@ -395,7 +397,8 @@ export default function SkillTagging(props) {
       Pilot: sessionStorage.getItem('Pilot'),
       SoH: sessionStorage.getItem('SoH'),
       Sneak: sessionStorage.getItem('Sneak'),
-      Surviv: sessionStorage.getItem('Surviv')
+      Surviv: sessionStorage.getItem('Surviv'),
+      TaggedSkills: sessionStorage.getItem('taggedSkills')
     }
 
     console.log(charData);
@@ -408,7 +411,7 @@ export default function SkillTagging(props) {
         },
         body: JSON.stringify({charData}),
       });
-      if (res.status === 200) return window.location.href = "/";
+      if (res.status === 200) return window.location.href = "/character-creator/portrait";
       const { error: message } = await res.json();
       setError(message);
     } catch (err) {
