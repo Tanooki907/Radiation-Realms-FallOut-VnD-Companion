@@ -411,7 +411,7 @@ export default function SkillTagging(props) {
         },
         body: JSON.stringify({charData}),
       });
-      if (res.status === 200) return window.location.href = "/character-creator/portrait";
+      if (res.status === 200) return window.location.href = "/";
       const { error: message } = await res.json();
       setError(message);
     } catch (err) {
